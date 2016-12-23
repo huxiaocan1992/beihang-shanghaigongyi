@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户信息</title>
+		<link rel="stylesheet" href="dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="dist/css/reset.css" />
+		<link rel="stylesheet" href="info.css" />
+
+	</head>
+	<body>
+		<div id="container">
+			<!--左边用户信息-->
+			<aside id="aside">				
+				<h2>基本信息</h2>
+				<div class="xc_info">
+					<ul class="xc_userlist">
+						<li class="">用户名 ：<span>张三</span></li>						
+					</ul>
+					<div class="xc_form">
+						<form action="" method="" role="form" class="">
+							<button type="button" class="btn btn-warning xc_btnModify">修改密码</button>
+							<div class="xc_modifypow">
+								<div class="form-group xc_formgroup">
+							    <label for="password00" class="">原密码:</label>
+								    <input type="password" class="form-control" id="password00" placeholder="请输入原密码">
+								  </div>
+								<div class="form-group xc_formgroup">
+								    <label for="password01" class="">新密码:</label>
+								    <input type="password" class="form-control" id="password01" placeholder="请输入新密码">
+								  </div>
+								  <div class="form-group" >
+								    <label for="password02" class="">确认密码:</label>
+								    <input type="password" class="form-control" id="password02" placeholder="请再次输入新密码">
+								  </div>								  
+								 <button type="button" class="btn btn-primary xc_btnOK col-lg-offset-2">确认</button>
+								<button type="button" class="btn btn-default xc_btnReset col-lg-offset-1">取消</button> 
+							</div>
+						</form>
+						<p class="xc_tip"><mark>温馨提示</mark> 如果您忘记密码，请联系管理员重置密码</p>
+					</div>
+					<div class="xc_prop">
+						<h2>团队/组织</h4>
+						<ul class="xc_userlist">
+							<li class="">团队/组织 ：<span class="xc_character">团队</span></li>						
+						</ul>
+						<div>
+							<form action="" method="" role="form" class=""> 
+								<div class="xc_team"><!--团队-->
+									<div class="form-group">
+									    <label class="">请上传带身份证信息的照片:</label>
+
+									    <input onchange='imgjudge(this);' type="file" class="form-control" id="upload" placeholder="上传身份证正反面" size="100">
+									    <p>(只能上传jpg、png、bmp格式图片并且小于100KB)</p>
+									  </div>
+									  <div class="form-group">
+									    <label for="account" class="">银行卡号:</label>
+									    <input type="text" class="form-control" id="account" placeholder="请输入账号">
+									  </div>
+									  <div class="form-group">
+									    <label for="openAccount" class="">开户行:</label>
+									    <input type="text" class="form-control" id="openAccount" placeholder="请输入开户行">
+									  </div>
+									<p class="xc_red"></p>
+								</div>
+								<div class="xc_org"><!--组织-->
+									<div class="form-group">
+									    <label for="name" class="">机构名称:</label>
+									    <input type="text" class="form-control" id="name" placeholder="请输入机构名称">
+									  </div>
+									  <div class="form-group">
+									    <label for="account01" class="">银行账号:</label>
+									    <input type="text" class="form-control" id="account01" placeholder="请输入银行账号">
+									  </div>
+									  <div class="form-group">
+									    <label for="openAccount01" class="">开户行:</label>
+									    <input type="text" class="form-control" id="openAccount01" placeholder="请输入开户行">
+									  </div>
+									  <p class="xc_red"></p>
+									  <!--<div class="form-group">
+									    <label for="account" class="col-lg-3">账号:</label>
+									    <input type="text" class="form-control col-lg-9" id="account" placeholder="请输入开票账号">
+									  </div>-->
+								</div>							  
+								<button type="button" class="btn btn-primary xc_confirm">确认</button>
+						</form>
+						</div>
+					</div>
+				</div>
+			</aside>
+			
+			<!--右边表格信息-->
+			<section id="section">
+				<h2>业务信息</h2>
+				<div class="xc_reginfo">
+					<span class="xc_spanleft">商户编号</span>
+					<span class="xc_spanright"><img src="img/qr_code.png" alt="" width="64px" height="64px" /></span>
+				</div>
+				<div class="xc_table table-responsive">
+					<table class="table table-striped table-bordered">
+					  <thead>
+					  	<tr>
+					  		<th style="min-width: 56px;">商户编号</th>
+					  		<th>订单编号</th>
+					  		<th style="min-width: 56px;">订单日期</th>
+					  		<th>手机号</th>
+					  		<th>姓名</th>
+					  		<th>微信号</th>
+					  		<th>护照编号</th>
+					  		<th>证件编号</th>
+					  		<th>捐赠金额</th>
+					  		<th>平安老用户</th>
+					  		<th>平安新用户</th>
+					  	</tr>
+					  </thead>
+					  <tbody>
+					  	<tr>
+					  		<td>001</td>
+					  		<td>A1029</td>
+					  		<td>20161216</td>
+					  		<td>18909878786</td>
+					  		<td>张三</td>
+					  		<td>1234323</td>
+					  		<td>12309483930299999</td>
+					  		<td>09809890989098909</td>
+					  		<td>￥300</td>
+					  		<td>10293029090909090</td>
+					  		<td>09090890989890989</td>
+					  	</tr>
+					  	<tr>
+					  		<td>001</td>
+					  		<td>A1029</td>
+					  		<td>20161216</td>
+					  		<td>18909878786</td>
+					  		<td>张三</td>
+					  		<td>1234323</td>
+					  		<td>12309483930299999</td>
+					  		<td>09809890989098909</td>
+					  		<td>￥300</td>
+					  		<td>10293029090909090</td>
+					  		<td>09090890989890989</td>
+					  	</tr>
+					  	<tr>
+					  		<td>001</td>
+					  		<td>A1029</td>
+					  		<td>20161216</td>
+					  		<td>18909878786</td>
+					  		<td>张三</td>
+					  		<td>1234323</td>
+					  		<td>12309483930299999</td>
+					  		<td>09809890989098909</td>
+					  		<td>￥300</td>
+					  		<td>10293029090909090</td>
+					  		<td>09090890989890989</td>
+					  	</tr>
+					  </tbody>
+					</table>
+				</div>
+			</section>
+		</div>		
+		<script type="text/javascript" src="dist/js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="dist/js/bootstrap.min.js"></script>
+	</body>
+</html>
+<script> 
+var picPath;
+var image; 
+// preview picture 
+function preview(){ 
+     document.getElementById('upload').src = picPath;
+     
+ } 
+ function loadImage(img) { 
+   var exp = /.jpg$|.png$|.bmp$/;
+  if(exp.exec(img.value)==null){
+   alert('图片格式不正确');
+   img.outerHTML=img.outerHTML;//清空
+   return false;
+  } 
+ } 
+ function filefujianChange(img) {
+       var fileSize = 0;         
+       if (!img.files) {     
+         var filePath = img.value;     
+         var fileSystem = new ActiveXObject("Scripting.FileSystemObject");        
+         var file = fileSystem.GetFile (filePath);     
+         fileSize = file.Size;    
+       } else {    
+        fileSize = img.files[0].size;     
+        }   
+        var size = fileSize / 1024;    
+        if(size>100){  
+         alert("附件不能大于100KB");
+         img.value="";
+         return
+        }
+        
+      }
+ function imgjudge(img){
+ 	loadImage(img);
+ 	filefujianChange(img);
+ }
+
+
+ </script>
+<script type="text/javascript">
+	$(function(){
+		var xc_span=$(".xc_character").text();
+		$('.xc_team').hide();
+		$('.xc_org').hide();
+		if(xc_span=='团队'){
+			$('.xc_org').hide();
+			$('.xc_team').show();
+		}else{
+			$('.xc_team').hide();
+			$('.xc_org').show();
+		}
+		
+		$(".xc_modifypow").hide();//修改密码隐藏		
+		$(".xc_btnModify").click(function(){//点击修改密码
+			$(".xc_modifypow").show();
+			$(".xc_btnModify").hide();			
+		})
+		$(".xc_btnOK").click(function(){//点击确定按钮
+			var pw1=$("#password01").val();
+			var pw2=$("#password02").val();
+			var pw0=$("#password00").val();
+			if(pw1!==pw2){
+				alert("两次输入的密码不一致 请重新输入")	;
+			}else if($.trim(pw1) ==='' || $.trim(pw2)==='' || $.trim(pw0)===''){
+				alert("密码不能为空 请重新输入");
+			}else if(pw0===pw1){
+				alert("新密码不能与原密码相同 请重新输入");
+			}else{
+				alert("密码修改成功")	;
+					$(".xc_modifypow").hide();
+					$(".xc_btnModify").show();
+					$("#password01").val('');
+					$("#password02").val('');
+			}
+			})
+		$(".xc_btnReset").click(function(){//点击取消按钮
+			$(".xc_modifypow").hide();
+			$(".xc_btnModify").show();
+			$("#password01").val('');
+			$("#password02").val('');
+		})
+		
+	})
+</script>

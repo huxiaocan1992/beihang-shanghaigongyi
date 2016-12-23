@@ -1,0 +1,36 @@
+.common_btn_item{
+	min-width: 70px;
+}
+.common_list_wrapper{
+
+}
+.common_listcontent_item{
+	display: inline-block;
+	width: 90%;
+}
+.common_process_wrapper{
+	margin: 0 auto;
+	width: 55%;
+}
+.common_headeruserinfo_wrapper{
+	float: right;
+	margin: 5px;
+}
+.common_headeruserinfo_wrapper .avatar{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	overflow: hidden;
+	vertical-align: middle;
+}
+.common_headeruserinfo_wrapper .avatar img{
+	display: block;
+	width: 100%;
+}
+.common_headeruserinfo_wrapper label{
+	display: inline-block;
+	font-size: 16px;
+	color: #999;
+	vertical-align: middle;
+}

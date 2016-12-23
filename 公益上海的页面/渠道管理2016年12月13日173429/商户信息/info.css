@@ -1,0 +1,98 @@
+body{
+	font-family: "微软雅黑" !important;
+}
+#container{
+	width: 100%;
+	min-width: 1200px;
+	margin: 0 auto;
+}
+
+#aside{
+	width: 20%;
+	min-width: 240px;
+	float: left;
+	border: 1px solid #d0d0d0;
+}
+.xc_tip{
+	line-height: 2;
+}
+#aside h2,#section h2{
+	font-size: 18px;
+	text-align: center;
+	line-height: 2;
+	border-bottom: 1px solid #d0d0d0;
+	background: #eee;
+}
+.xc_info{
+	
+}
+.xc_userlist{
+	margin:10px;
+	font-size: 14px;
+}
+.xc_userlist li{
+	line-height: 20px;
+}
+.xc_form{
+	padding:20px 10px ;
+	border-bottom: 1px solid #d0d0d0;
+}
+.xc_modifypow {
+	font-size:14px;
+	line-height: 24px;
+}
+.xc_modifypow ,
+.xc_org,
+.xc_team{
+	margin-left: 40px;
+}
+.xc_modifypow label,
+.xc_org label,
+.xc_team label{
+	text-align: right;
+	line-height: 38px;
+}
+.xc_modifypow input,
+.xc_org input,
+.xc_team input{
+	width: auto;
+	height: 24px;
+	line-height: 24px;
+}
+.xc_team input[type="file"]{
+	width: 200px;
+}
+.xc_formgroup{
+	margin-bottom: 5px;
+}
+#section{
+	width: 78%;
+	min-width: 940px;
+	float:right;
+}
+.xc_reginfo{
+	overflow: hidden;
+	line-height: 40px;
+	border-bottom:1px solid #d0d0d0;
+	margin: 20px auto;
+}
+.xc_reginfo .xc_spanleft{
+	float: left;
+	margin-left: 20px;
+}
+.xc_reginfo .xc_spanright{
+	float: right;
+	margin-right: 20px;
+}
+
+.xc_confirm{
+	margin-left: 50px;
+	margin-bottom: 5px;
+}
+.xc_red{
+	font-size: 16px;
+	line-height: 32px;
+	margin-top:10px;
+	color: red;
+
+}

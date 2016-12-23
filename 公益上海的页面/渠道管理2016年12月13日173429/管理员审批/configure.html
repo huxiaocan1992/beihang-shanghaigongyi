@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<title>管理员配置</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/approvallist_bootstrap.css">
+	<script type="text/javascript" src='assets/js/jquery.min.js'></script>
+	<script type="text/javascript" src='assets/js/bootstrap.min.js'></script>
+	<script type="text/javascript" src="js/channel_url.js"></script>
+</head>
+
+<body>
+	<div class='common_header_wrapper'>
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="javascript:;">管理员配置列表</a>
+				</div>
+				<div class='common_headeruserinfo_wrapper'>
+					<span class='avatar'>
+						<img src="img/timg.jpg">
+					</span>
+					<label>审核人</label>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class=""><a href="approval.html">&nbsp;审批</a></li>
+					<li class="active"><a href="javascript:;">&nbsp;配置</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h2 class="sub-header"></h2>
+				<!-- <button type="button"  class="btn btn-primary save_config btn-sm btn-block">搜索</button> -->
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<div class="col-lg-1">
+								<button type="submit" class="btn btn-primary btn-sm btn-block">搜索</button>
+							</div> 
+						<div class="col-lg-6">	                            
+							<div class="col-lg-8 control_margin control_margin_bottom">
+								<input type="text" placeholder="请输入手机号或姓名" class="form-control">
+							</div>
+													
+						</div>
+					</div>
+				</form>
+				<h2 class="sub-header"></h2>
+				<table class="table table-hover table_cont" id="table_cont">
+					<thead>
+						<tr>
+							<th class="col-lg-1">手机号</th>
+							<th class="col-lg-2">名称</th>
+							<th class="col-lg-1">标题</th>
+							<th class="col-lg-1">广告图片</th>                            
+							<th class="col-lg-1">说明文字</th>
+							<th class="col-lg-1">详情链接</th>
+							<th class="col-lg-1">详情说明书</th> 
+							<th class="col-lg-1">操作</th>
+							<th class="col-lg-3"></th>                
+						</tr>
+					</thead>
+					<tbody id="tbody">
+						<tr>
+							<td>13015593721</td>
+							<td>大众点评</td>
+							<td>激活说明</td>
+							<td>C:\123.png</td>
+							<td>说明文字</td>
+							<td>详情链接</td>
+							<td>激活说明书</td>
+							<td>
+								<button type="button" class="approlist_shenpi_item common_btn_item btn btn-primary btn-sm">保存</button>
+							</td>                            
+						</tr> 
+						
+					</tbody>
+				</table>
+			   
+			   <!--分页div-->
+				<ul id="pages"></ul>
+			 
+			</div>
+		</div>
+	</div>
+</body>
+<!--分页-->
+<link rel="stylesheet" href="js/laypage-v1.3/laypage/skin/laypage.css" />
+<script type="text/javascript" src="js/laypage-v1.3/laypage/laypage.js"></script>
+<script type="text/javascript" src="js/ajaxHandler.js"></script>
+<script type="text/javascript">
+function ajaxInit(curr){
+	var nums=8;	
+	var datastr={
+			pageSize:nums,
+			pageNo:curr||1
+	};
+		$.ajax({
+			 type: "post",
+			 url: channel_url+"channelAdmin/queryList",
+			 dataType: "json",
+			 data:JSON.stringify(datastr),
+			 contentType: 'application/json; charset=utf-8',
+			 success:function(datas){
+				var datalist=datas["data"]["list"];
+				var tbody = "";
+				for (var i = 0; i < datalist.length; i++) {
+
+					 tbody+="<tr class='tar'><td>"+datalist[i]['mobile']+"</td><td>"+datalist[i]['name']+"</td>   <td><textarea rows='1' cols='5'></textarea></td>  <td><input onchange='imgjudge(this);' type='file' /></td>   <td><textarea rows='1' cols='5'></textarea>      </td><td><textarea rows='1' cols='5'></textarea></td>  <td><textarea rows='1' cols='5'></textarea></td> <td><button type='button' class='approlist_shenpi_item common_btn_item btn btn-primary btn-sm save_config'>保存</button></td></tr>";
+					
+				}
+				$("#tbody").html(tbody);
+
+				//分页
+				var total=datas["data"]["total"];
+				 laypage({
+					cont: 'pages',
+					pages: Math.ceil(total/nums),
+					curr: curr || 1,
+					skin: '#1E9FFF',
+					jump: function(obj, first) {
+						if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+							ajaxInit(obj.curr);
+						}
+					}
+		
+				}); 	
+			},
+			 error:function(){
+				
+			 }
+		})
+}
+ajaxInit();
+// 测试
+$('#tbody').on('click','.save_config',function(e){
+	var tar = e.target;
+	// var aaa = $(tar).parent().siblings();
+	// console.log(aaa.eq(0).text()=='');
+	// console.log(aaa.eq(3).val());
+	// console.log($(tar).parents('tr').children().text());
+	// console.log($(tar).parents('tr').children().eq(2).children().val());
+	var selected_tar = $(tar).parent().siblings();
+	var mobile=selected_tar.eq(0).text();
+	var title=selected_tar.eq(2).children().val();
+	var adsImg=selected_tar.eq(3).children().val();
+	var demo=selected_tar.eq(4).children().val();
+	var detailUrl=selected_tar.eq(5).children().val();
+	var detailTitle=selected_tar.eq(6).children().val();
+	//必填项验证
+	if (title!='' && adsImg!='' && demo!='' && detailUrl!='' && detailTitle!='') {
+		// 获取当前选中用户的id，并传递给channel作为参数
+		console.log(mobile)
+		var datastr_mobule = {
+			keyWords:mobile
+		}
+		$.ajax({
+			 type: "post",
+             url: channel_url+"channelAdmin/queryList",
+             dataType: "json",
+           	 data:JSON.stringify(datastr_mobule),
+           	 contentType: 'application/json; charset=utf-8',
+             success:function(datas){
+             var selected_userId = datas["data"]["list"][0]["id"];
+             console.log(selected_userId);
+             //调用保存接口
+             save_config(selected_userId);
+
+			},
+
+             error:function(){
+             	
+            }
+		})
+		//保存按钮
+		function save_config(selected_userId){
+			var datastr_save={
+				channel: selected_userId,
+				title: title,
+				adsImg: adsImg,
+				demo: demo,
+				detailUrl: detailUrl,
+				detailTitle: detailTitle
+			}
+				$.ajax({
+				 type: "post",
+			     url: channel_url+"channelAdmin/channelExplain",
+			     dataType: "json",
+			   	 data:JSON.stringify(datastr_save),
+			   	 contentType: 'application/json; charset=utf-8',
+			     success:function(datas){
+		        	console.log("成功了");
+				},
+			     error:function(){
+			     	
+			     }
+			})
+
+		}
+	//保存结束
+	}else{
+		alert("有必填项为空，请输入或选择内容！");
+	}
+							// if(aaa.eq(3).children().val()==''){
+							// 	alert("有输入框为空");
+							// }else{
+							// 	console.log(aaa.eq(3).children().val())
+							// 	alert("可以提交")
+							// }
+
+
+})
+
+//广告图片大小验证
+function imgjudge(img) {
+    loadImage(img);
+    filefujianChange(img);
+}
+
+
+
+</script>
+
+</html>

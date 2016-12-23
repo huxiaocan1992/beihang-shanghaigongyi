@@ -1,0 +1,7 @@
+.access_login_wrapper{
+	margin: 0 auto;
+	width: 50%;
+}
+.access_login_wrapper .loginform_wrapper input {
+	margin: 20px 0;
+}

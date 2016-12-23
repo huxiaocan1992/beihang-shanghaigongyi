@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>渠道用户申请</title>
+    <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="dist/js/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/channel_url.js"></script>
+</head>
+
+<body>
+    <div class="col-md-offset-3 col-xs-offset-1 col-xs-10 main">
+        <!-- 可以删除 -->
+        <div class="form-signin-heading">
+            </br>
+        </div>
+        <!-- 可以删除 -->
+        <form action="" method="post" class="form-horizontal" role="form">
+            <h3 class="form-signin-heading">申请信息填写</h3>
+            <div class="form-group">
+                <label for="firstname" class="col-sm-2 col-xs-5 control-label">联系人姓名</label>
+                <div class="col-sm-6 col-xs-7">
+                    <input type="text" class="form-control input1" placeholder="请输入姓名">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastname" class="col-sm-2 col-xs-5 control-label">联系人电话</label>
+                <div class="col-sm-6 col-xs-7">
+                    <input type="text" class="form-control input2" placeholder="请输入电话">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-10 col-xs-offset-2 col-xs-10">
+                    <button id="apply" type="button" class=" col-lg-2 col-xs-8 btn btn-primary btn-default">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        function testing() {
+            // $("#apply").attr("disabled","disabled");
+            if ($(".input1").val() != "" && $(".input2").val() != "") {
+                $("#apply").removeAttr("disabled");
+                console.log($(".input1").val())
+            } else {
+                $("#apply").attr("disabled", "disabled");
+                console.log("为空")
+            }
+        }
+        testing();
+        $(".input1,.input2").blur(function() {
+            testing();
+        })
+
+        //验证手机号
+        var phone_pattern = /^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/;
+        $(".input2").blur(function(){
+                if (!phone_pattern.test($(".input2").val())) {
+               alert("手机号填写错误");
+            }
+            })
+
+        $("#apply").click(function() {
+        var phone_pattern = /^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/;
+
+            if (!phone_pattern.test($(".input2").val())) {
+               alert("手机号填写错误");
+            }else{
+                var datastr = {
+                    mobile: $(".input2").val(),
+                    name: $(".input1").val()
+                }
+                $.ajax({
+
+                    url: channel_url+'channelAdmin/create',
+                    timeOut: 1000,
+                    type: 'post',
+                    dataType: 'json',
+                    data: JSON.stringify(datastr),
+                    contentType: 'application/json; charset=utf-8',
+                    beforeSend: LoadFunction, //加载执行方法    
+                    error: erryFunction, //错误执行方法    
+                    success: succFunction //成功执行方法    
+                })
+
+                function LoadFunction() {
+
+                }
+
+                function erryFunction() {
+                    alert("提交失败1！");
+                }
+                function succFunction(dates) {
+                    if (dates.code == 0) {
+                        alert("提交成功！");
+                        $(".input2").val("");
+                    	$(".input1").val("");
+                    } else {
+                        alert("提交失败！");
+                    }
+                }
+            }
+        })
+
+    });
+    </script>
+</body>
+
+</html>
